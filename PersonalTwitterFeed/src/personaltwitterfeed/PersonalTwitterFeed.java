@@ -13,6 +13,7 @@ import java.util.Scanner;
  *
  * @author CCannon
  */
+import java.util.Locale;
 public class PersonalTwitterFeed {
 
     private static int MAX_NUMBER_TWEETS = 200;
@@ -35,12 +36,12 @@ public class PersonalTwitterFeed {
         int numTweets = 0;
         
         while(numTweets < (MAX_NUMBER_TWEETS - 1)) {
-            tweets[numTweets] = keyboard.nextLine();
+            tweets[numTweets] = keyboard.nextLine()+" - "+getCurrentTimeStamp();
             numTweets++;
             
             System.out.println(tweeterName + "'s Personal Twitter Feed:");
             for(int i = 0; i < numTweets; i++) {
-                System.out.println("- " + tweets[i]);
+                System.out.println( tweets[i]);
             }
             
             System.out.println();
@@ -58,10 +59,11 @@ public class PersonalTwitterFeed {
     }
     
     public static String getCurrentTimeStamp(){
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String pattern = "MMMMM dd yyyy HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("da", "DK"));
+
         String date = simpleDateFormat.format(new Date());
-        return date;  
+        return date; 
     }
     
 }
